@@ -1,0 +1,35 @@
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+    id 'java-gradle-plugin'
+}
+
+group 'org.example'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    // groovy version should be the same as in "./gradlew --version" output
+    implementation 'org.codehaus.groovy:groovy-all:3.0.7'
+}
+
+/**
+ *  To publish the plugin to local maven repository
+ *  execute the 'publishSimplePluginPluginMarkerPublicationToMavenLocal'
+ *  followed by the 'publishToMavenLocal' task.
+ *  To use this plugin in an external project,
+ *  add the 'pluginManagement' block with mavenLocal() and gradlePluginPortal()
+ *  repositories as the first lines of settings.gradle in the project that uses this plugin
+ *  */
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'org.example.gradle-plugin-sample'
+            implementationClass = 'org.example.GreetingPlugin'
+        }
+    }
+}
