@@ -37,8 +37,8 @@ dependencies {
 gradlePlugin {
     plugins {
         simplePlugin {
-            id = 'org.example.gradle-plugin-sample'
-            implementationClass = 'org.example.GreetingPlugin'
+            id = 'org.example.configurer-gradle-plugin'
+            implementationClass = 'org.example.ConfigurerPlugin'
         }
     }
 }
