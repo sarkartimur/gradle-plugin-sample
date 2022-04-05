@@ -11,12 +11,23 @@ class ConfigurerPlugin implements Plugin<Project> {
         project.getPlugins().apply("io.freefair.lombok")
         project.getPlugins().apply("com.google.cloud.tools.jib")
 
+        project.repositories repos()
+
         project.subprojects {
             apply plugin: 'java'
             apply plugin: 'org.springframework.boot'
             apply plugin: 'io.spring.dependency-management'
             apply plugin: 'io.freefair.lombok'
             apply plugin: 'com.google.cloud.tools.jib'
+
+            repositories repos()
+        }
+    }
+
+    private Closure repos() {
+        return {
+            mavenLocal()
+            mavenCentral()
         }
     }
 }
