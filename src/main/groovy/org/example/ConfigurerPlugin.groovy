@@ -22,6 +22,20 @@ class ConfigurerPlugin implements Plugin<Project> {
                 mavenLocal()
                 mavenCentral()
             }
+
+            jib {
+                if(project.hasProperty('local')) allowInsecureRegistries = true
+                to {
+                    image = project.hasProperty('imageName') ? project.property('imageName') : 'my-image'
+                    if (project.hasProperty('registryAddress')) image = "${registryAddress}/${image}".toString()
+                }
+                container {
+                    if(project.hasProperty('jvmDebug')) jvmFlags = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=65001']
+                    def profiles = project.hasProperty('activeProfiles') ? project.property('activeProfiles') : 'default'
+                    args = ["--spring.profiles.active=${profiles}".toString()]
+                    ports = ['8080']
+                }
+            }
         }
     }
 }
