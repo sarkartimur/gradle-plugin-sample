@@ -5,29 +5,23 @@ import org.gradle.api.Project
 
 class ConfigurerPlugin implements Plugin<Project> {
     void apply(Project project) {
-        project.getPlugins().apply("java")
-        project.getPlugins().apply("org.springframework.boot")
-        project.getPlugins().apply("io.spring.dependency-management")
-        project.getPlugins().apply("io.freefair.lombok")
-        project.getPlugins().apply("com.google.cloud.tools.jib")
+        project.configure(project, configurer())
 
-        project.repositories repos()
+        project.subprojects configurer()
+    }
 
-        project.subprojects {
+    private Closure<Void> configurer() {
+        return {
             apply plugin: 'java'
             apply plugin: 'org.springframework.boot'
             apply plugin: 'io.spring.dependency-management'
             apply plugin: 'io.freefair.lombok'
             apply plugin: 'com.google.cloud.tools.jib'
 
-            repositories repos()
-        }
-    }
-
-    private Closure repos() {
-        return {
-            mavenLocal()
-            mavenCentral()
+            repositories {
+                mavenLocal()
+                mavenCentral()
+            }
         }
     }
 }
