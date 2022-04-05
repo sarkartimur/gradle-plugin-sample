@@ -10,11 +10,20 @@ version '1.0'
 repositories {
     mavenCentral()
     mavenLocal()
+    gradlePluginPortal()
 }
 
 dependencies {
     // groovy version should be the same as in "./gradlew --version" output
     implementation 'org.codehaus.groovy:groovy-all:3.0.7'
+
+    // plugin dependencies
+    implementation(
+            'org.springframework.boot:spring-boot-gradle-plugin:2.6.3',
+            'io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE',
+            'io.freefair.gradle:lombok-plugin:6.4.1',
+            'gradle.plugin.com.google.cloud.tools:jib-gradle-plugin:3.2.0'
+    )
 }
 
 /**
