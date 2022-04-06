@@ -31,7 +31,7 @@ dependencies {
  *  execute the 'publishSimplePluginPluginMarkerPublicationToMavenLocal'
  *  followed by the 'publishToMavenLocal' task.
  *  To use this plugin in an external project,
- *  add the 'pluginManagement' block with mavenLocal() and gradlePluginPortal()
+ *  add the 'pluginManagement' block with mavenLocal(), mavenCentral() and gradlePluginPortal()
  *  repositories as the first lines of settings.gradle in the project that uses this plugin
  *  */
 gradlePlugin {
