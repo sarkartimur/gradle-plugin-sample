@@ -45,7 +45,7 @@ class ConfigurerPlugin implements Plugin<Project> {
                     if (project.hasProperty('registryAddress')) image = "${registryAddress}/${image}".toString()
                 }
                 container {
-                    if (project.hasProperty('jvmDebug')) jvmFlags = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=65001']
+                    if (project.hasProperty('jvmDebug')) jvmFlags = ['-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005']
                     def profiles = project.hasProperty('activeProfiles') ? project.property('activeProfiles') : 'default'
                     args = ["--spring.profiles.active=${profiles}".toString()]
                     ports = ['8080']
